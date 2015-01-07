@@ -143,13 +143,17 @@ class ITunesElements(object):
                 handler.endElement("image")
 
         handler.addQuickElement("guid", str(episode.uuid), attrs={"isPermaLink": "false"})
-        if licenses:
-            handler.addQuickElement("copyright", "{0} {1} {2}".format(show.license.name,
-                                                                      show.license.url,
-                                                                      datetime.date.today().year))
-        else:
-            handler.addQuickElement("copyright", "{0} {1}".format(show.license.name,
-                                                                  datetime.date.today().year))
+        #if licenses:
+        #    handler.addQuickElement("copyright", "{0} {1} {2}".format(show.license.name,
+        #                                                              show.license.url,
+        #                                                              datetime.date.today().year))
+        #else:
+        #    handler.addQuickElement("copyright", "{0} {1}".format(show.license.name,
+        #    datetime.date.today().year))
+
+        handler.addQuickElement("copyright", "%s %s" % (show.owner.username, datetime.date.today().year))
+
+                                                                  
         handler.addQuickElement("itunes:author", episode.author_text)
         handler.addQuickElement("itunes:subtitle", episode.subtitle)
         handler.addQuickElement("itunes:summary", episode.description)
@@ -193,11 +197,12 @@ class ShowFeed(Feed):
         return ("Music",)
 
     def feed_copyright(self, show):
-        if licenses:
-            return "{0} {1} {2}".format(
-                show.license.name, show.license.url, datetime.date.today().year)
-        else:
-            return "{0} {1}".format(show.license, datetime.date.today().year)
+        return "%s %s" % (show.owner.username, datetime.date.today().year)
+        #if licenses:
+        #    return "{0} {1} {2}".format(
+        #        show.license.name, show.license.url, datetime.date.today().year)
+        #else:
+        #    return "{0} {1}".format(show.license, datetime.date.today().year)
 
     def ttl(self, show):
         return show.ttl
