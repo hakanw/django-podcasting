@@ -447,6 +447,7 @@ class Enclosure(models.Model):
             ("ogg", "audio/ogg"),
             ("flac", "audio/flac"),
             ("wav", "audio/wav"),
+            ("m4a", "audio/x-m4a"),
         )
 
     episodes = models.ManyToManyField(Episode, verbose_name=_("Episodes"))
