@@ -84,8 +84,8 @@ class ITunesElements(object):
         handler.addQuickElement("itunes:subtitle", self.feed["subtitle"])
         handler.addQuickElement("itunes:author", show.author_text)
         handler.startElement("itunes:owner", {})
-        handler.addQuickElement("itunes:name", show.owner.get_full_name())
-        handler.addQuickElement("itunes:email", show.owner.email)
+        handler.addQuickElement("itunes:name", show.owner.username)
+        #handler.addQuickElement("itunes:email", show.owner.email)
         handler.endElement("itunes:owner")
         handler.addQuickElement("itunes:category", attrs={"text": self.feed["categories"][0]})
         handler.addQuickElement("itunes:summary", show.description)
@@ -93,10 +93,10 @@ class ITunesElements(object):
         if show.redirect:
             handler.addQuickElement("itunes:new-feed-url", show.redirect)
         handler.addQuickElement("keywords", show.keywords)
-        if show.editor_email:
-            handler.addQuickElement("managingEditor", show.editor_email)
-        if show.webmaster_email:
-            handler.addQuickElement("webMaster", show.webmaster_email)
+        #if show.editor_email:
+        #    handler.addQuickElement("managingEditor", show.editor_email)
+        #if show.webmaster_email:
+        #    handler.addQuickElement("webMaster", show.webmaster_email)
         try:
             handler.addQuickElement("lastBuildDate",
                                     rfc2822_date(show.episode_set.published()[1].published))
