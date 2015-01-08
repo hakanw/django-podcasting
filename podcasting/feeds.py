@@ -89,7 +89,7 @@ class ITunesElements(object):
         handler.endElement("itunes:owner")
         handler.addQuickElement("itunes:category", attrs={"text": self.feed["categories"][0]})
         handler.addQuickElement("itunes:summary", show.description)
-        handler.addQuickElement("itunes:explicit", show.get_explicit_display())
+        #handler.addQuickElement("itunes:explicit", show.get_explicit_display())
         if show.redirect:
             handler.addQuickElement("itunes:new-feed-url", show.redirect)
         handler.addQuickElement("keywords", show.keywords)
@@ -161,7 +161,7 @@ class ITunesElements(object):
                                                                        episode.minutes,
                                                                        episode.seconds))
         handler.addQuickElement("itunes:keywords", episode.keywords)
-        handler.addQuickElement("itunes:explicit", episode.get_explicit_display())
+        #handler.addQuickElement("itunes:explicit", episode.get_explicit_display())
         if episode.block:
             handler.addQuickElement("itunes:block", "yes")
 
@@ -194,7 +194,7 @@ class ShowFeed(Feed):
         return show.link
 
     def categories(self, show):
-        return ("Music",)
+        return ("Personal Journals",)
 
     def feed_copyright(self, show):
         return "%s %s" % (show.owner.username, datetime.date.today().year)
@@ -282,10 +282,10 @@ class AtomShowFeed(ShowFeed):
         return show.subtitle
 
     def author_name(self, show):
-        return show.owner.get_full_name()
+        return show.author_text
 
-    def author_email(self, show):
-        return show.owner.email
+    #def author_email(self, show):
+    #    return show.owner.email
 
     def author_link(self, show):
         return show.link
