@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import json
 import os
+import uuid
 try:
     from urllib2 import urlopen
 except ImportError:
@@ -79,18 +80,19 @@ from podcasting.utils.twitter import can_tweet
 def get_show_upload_folder(instance, pathname):
     "A standardized pathname for uploaded files and images."
     root, ext = os.path.splitext(pathname)
-    return "img/podcasts/{0}/{1}{2}".format(instance.slug, slugify(root), ext)
-
+    #return "img/podcasts/{0}/{1}{2}".format(instance.slug, slugify(root), ext)
+    return "/users/%s/covers/%s%s" % (instance.owner.username, str(uuid.uuid4()), ext)
 
 def get_episode_upload_folder(instance, pathname):
     "A standardized pathname for uploaded files and images."
     root, ext = os.path.splitext(pathname)
-    if instance.shows.count() == 1:
-        return "img/podcasts/{0}/episodes/{1}{2}".format(
-            instance.shows.all()[0].slug, slugify(root), ext
-        )
-    else:
-        return "img/podcasts/episodes/{0}/{1}{2}".format(instance.slug, slugify(root), ext)
+    return "/users/%s/covers/%s%s" % (instance.shows.all()[0].owner.username, str(uuid.uuid4()), ext)
+    #if instance.shows.count() == 1:
+    #    return "img/podcasts/{0}/episodes/{1}{2}".format(
+    #        instance.shows.all()[0].slug, slugify(root), ext
+    #    )
+    #else:
+    #    return "img/podcasts/episodes/{0}/{1}{2}".format(instance.slug, slugify(root), ext)
 
 
 @python_2_unicode_compatible
