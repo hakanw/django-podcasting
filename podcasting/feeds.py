@@ -226,7 +226,7 @@ class ShowFeed(Feed):
 
     def item_link(self, episode):
         return reverse("podcasting_episode_detail",
-                       kwargs={"show_slug": self.show.slug, "slug": episode.slug}, scheme="http")
+                       kwargs={"show_slug": self.show.slug, "slug": episode.slug}, scheme="http", subdomain=episode.shows.all()[0].slug)
 
     # def item_author_link(self, episode):
     #     return "todo" #this one doesn't add anything in atom or rss
