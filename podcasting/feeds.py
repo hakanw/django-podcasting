@@ -140,7 +140,7 @@ class ITunesElements(object):
                 handler.startElement("image", {})
                 handler.addQuickElement("url", itunes_sm_url)
                 handler.addQuickElement("title", episode.title)
-                handler.addQuickElement("link", reverse('podcasting_episode_detail', kwargs={ 'slug': episode.slug }, scheme="http", subdomain=show.slug)
+                handler.addQuickElement("link", reverse('podcasting_episode_detail', kwargs={ 'slug': episode.slug }, scheme="http", subdomain=show.slug))
                 handler.endElement("image")
 
         handler.addQuickElement("guid", str(episode.uuid), attrs={"isPermaLink": "false"})
