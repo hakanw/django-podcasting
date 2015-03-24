@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 import datetime
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+#from django.core.urlresolvers import reverse
+from subdomains.utils import reverse
 from django.utils.feedgenerator import rfc2822_date, Rss201rev2Feed, Atom1Feed
 from django.shortcuts import get_object_or_404
 
@@ -225,7 +226,7 @@ class ShowFeed(Feed):
 
     def item_link(self, episode):
         return reverse("podcasting_episode_detail",
-                       kwargs={"show_slug": self.show.slug, "slug": episode.slug})
+                       kwargs={"show_slug": self.show.slug, "slug": episode.slug}, scheme="http")
 
     # def item_author_link(self, episode):
     #     return "todo" #this one doesn't add anything in atom or rss
