@@ -178,6 +178,8 @@ class AtomITunesFeedGenerator(ITunesElements, Atom1Feed):
 
 
 class RssITunesFeedGenerator(ITunesElements, Rss201rev2Feed):
+    mime_type = 'application/rss+xml; charset=utf-8'
+
     def rss_attributes(self):
         rss_attrs = super(RssITunesFeedGenerator, self).rss_attributes()
         rss_attrs.update(self.namespace_attributes())
