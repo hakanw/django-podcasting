@@ -88,7 +88,7 @@ class ITunesElements(object):
         handler.addQuickElement("itunes:name", show.owner.username)
         #handler.addQuickElement("itunes:email", show.owner.email)
         handler.endElement("itunes:owner")
-        handler.addQuickElement("itunes:category", attrs={"text": self.feed["categories"][0]})
+        #handler.addQuickElement("itunes:category", attrs={"text": self.feed["categories"][0]})
         handler.addQuickElement("itunes:summary", show.description)
         #handler.addQuickElement("itunes:explicit", show.get_explicit_display())
         if show.redirect:
