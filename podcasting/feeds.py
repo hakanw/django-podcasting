@@ -194,8 +194,8 @@ class ShowFeed(Feed):
     def link(self, show):
         return show.link
 
-    def categories(self, show):
-        return ("Personal Journals",)
+    #def categories(self, show):
+    #    return ("Personal Journals",)
 
     def feed_copyright(self, show):
         return "%s %s" % (show.owner.username, datetime.date.today().year)
@@ -237,8 +237,8 @@ class ShowFeed(Feed):
     def item_pubdate(self, episode):
         return episode.published
 
-    def item_categories(self, episode):
-        return self.categories(self.show)
+    #def item_categories(self, episode):
+    #    return self.categories(self.show)
 
     def item_enclosure_url(self, episode):
         try:
